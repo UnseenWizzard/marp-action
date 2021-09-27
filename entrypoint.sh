@@ -39,7 +39,7 @@ git add . && \
 git status && \
 curr_branch="$(git rev-parse --abbrev-ref HEAD)" && \
 git commit -m "${COMMIT}" && \
-git push --force $remote_repo ${curr_branch}:${PUBLISH_TO_BRANCH}
+git push --force-with-lease $remote_repo ${curr_branch}:${PUBLISH_TO_BRANCH}
 
 echo "✔  Pushed Successfully!"
 echo ""

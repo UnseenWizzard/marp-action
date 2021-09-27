@@ -29,6 +29,8 @@ echo ""
 echo "   Publishing to ${GITHUB_REPOSITORY} ${REMOTE_BRANCH}..."
 echo ""
 
+COMMIT = "${COMMIT_MSG:-'Marp Action Build'}"
+
 remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" && \
 git init && \
 git config user.name "marp-action" && \
@@ -36,7 +38,7 @@ git config user.email "marp-action@users.noreply.github.com" && \
 git add . && \
 git status && \
 curr_branch="$(git rev-parse --abbrev-ref HEAD)" && \
-git commit -m'action build' && \
+git commit -m "${COMMIT}" && \
 git push --force $remote_repo ${curr_branch}:${PUBLISH_TO_BRANCH}
 
 echo "✔  Pushed Successfully!"
